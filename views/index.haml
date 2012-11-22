@@ -1,0 +1,51 @@
+%html
+  %head
+    %link{ :href => "/bootstrap/css/bootstrap.css", :type => "text/css", :rel => "stylesheet" }
+    %script{:type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}
+    %script{:type => 'text/javascript', :src => '/js/ajax.js'}
+%body
+  .container
+    %h2 Projects to Contact
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Title
+          %th Amount Funded
+          %th Date Funded
+          %th URL
+          %th Delete
+      %tbody.contact_table
+        - @contacted_projects.each do |project|
+          %tr
+            %td= project.title
+            %td{:style => "text-align: right;"}= project.amount.pretty_amount
+            %td= project.date_funded
+            %td
+              %a{:href => "#{project.url}"}
+                URL
+            %td{:style => "text-align: center;"}
+              %input{:type => "submit", :id => "#{project.id}", :class => "delete", :value => "Delete"}
+    %hr
+    %h2 All Projects
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Title
+          %th Amount Funded
+          %th Date Funded
+          %th URL
+          %th To contact
+          %th Delete
+      %tbody
+        - @projects.each do |project|
+          %tr
+            %td= project.title
+            %td{:style => "text-align: right;"}= project.amount.pretty_amount
+            %td= project.date_funded
+            %td
+              %a{:href => "#{project.url}"}
+                URL
+            %td{:style => "text-align: center;", :class => "contact"}
+              %input{:type => "submit", :class => "contact", :id => "#{project.id}", :value => "Contact"}
+            %td{:style => "text-align: center;"}
+              %input{:type => "submit", :id => "#{project.id}", :class => "delete", :value => "Delete"}
