@@ -1,3 +1,9 @@
+require 'nokogiri'
+require 'rest-client'
+
+require './app.rb'
+
+
 class Runner
   def run
     scrape_pages(5) # Rewrite this to run until it hits a faimliar record
